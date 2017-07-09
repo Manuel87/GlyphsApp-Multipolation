@@ -1,0 +1,594 @@
+{
+  "GeneralSetup": {
+	"Instances_reset_all": "TRUE",
+	"Filters_general_before": [],
+	"Filters_general_after": [],
+	"_info": {
+			"description": "General Setup for the Multipolation",
+			"default": 		false
+			}
+	},
+
+	"Master Axes": {
+		"_-----------------------------------------------------------_": "",
+		"Regular":	{
+			"value_parent":		0,
+			"value_master":		1,
+			"parent":			"none"
+		},
+			"Light":	{
+				"value_parent":		85,
+				"value_master":		20,
+				"parent":			"Regular"
+			},
+			"Bold":	{
+				"value_parent":		85,
+				"value_master":		160,
+				"parent":			"Regular"
+			},
+			"Test":	{
+				"value_parent":		0,
+				"value_master":		1,
+				"parent":			"Regular"
+			},
+			"Shadow":	{
+				"value_parent":		0,
+				"value_master":		1,
+				"value_default":	0.5,
+				"parent":			"Regular"
+			},
+				"ShadowAngle":	{
+					"value_parent":		 45,
+					"value_master":		-45,
+					"parent":			"Shadow"
+				},
+		"_-----------------------------------------------------------_": "",
+		"_description": "Custom values for each Master and their parent. At this stage each master behaves like a uniqe axis, which creates a powerful flexible basis to create custom Sliders. (Master names need to match exactly with the ones in Glyphs) /// if value_default not set it equals value_master by default"
+	},
+
+	"Slider Axes": {
+		"_-----------------------------------------------------------_": "",
+			"Weight":	{
+				"min": 				1,
+				"max":				220,
+				"tag":				"wght",
+				"master_sequence": 	["Light", "Regular", "Bold"],
+				"parent":			"none",
+				"extrapolation":	true,
+				"visibility_recom":	"basic/advanced/none/false",
+				"UI-type_recom":	"slider/button/..."
+			},
+			"Shadow": {
+				"min": 	0,
+				"max":	1,
+				"tag":	"SHDW"
+			},
+			"Shadow Angle": {
+				"min": 		-45,
+				"max":		 45,
+				"tag":		"SHDA",
+				"parent":	"Shadow"
+			},
+			"Optical Size": {},
+			"Size": 		{},
+			"Scale": 		{},
+			"Line-Height": 	{},
+			"Test": 		{},
+		"_-----------------------------------------------------------_": "",
+		"_description": "A Slider Axes is similar to what we know as regular axes at the moment. But with the separation of Master and Slider Axes we gain a lot of versatility when it comes to shape the behaviour of the slider"
+	},
+
+
+	"Axes Behaviour": {
+		"_-----------------------------------------------------------_": "",
+		"_Master Name_": 	"_Slider Name_ + (simple math or full python functions, if needed)",
+		"_-----------------------------------------------------------_": "",
+		"$Master.Light.value": 			"max($Slider.Weight, 85)",
+		"$Master.Bold.value": 			"min($Slider.Weight, 85)",
+
+		"$Master.Shadow.value": 		"$Slider.Shadow * map($Slider.Weight,20,220,0,1)",
+		"$Master.ShadowAngle.value": 	"$Slider.ShadowAngle * $Slider.Shadow",
+
+
+		"$Master.Test.value": 			"$Slider.Test",
+
+		"_-----------------------------------------------------------_": "",
+		"_description_": "",
+		"_master_sequence_": 	"This calculations and limits link Master+Slider axes and make it easy to perfectly customize the behaviour of your variable font ///// Default Setup: Nothing is declared -> min/max/between functions get inserted automatically if master_sequence is present within the slider options /// And if there is no sequence defined the Master Axes becomes a simple Slider Axes with min=value_parent and max=value_master ",
+
+		"_Alt_Labels_": "Instance Calculations / Variable Instance Setup / Master-Slider-Mapping / ...",
+
+		"_Note_": "/// Maybe '$Master/$Slider' we can kill and add a note that Slider Axes should be not named the same as an Master Axes"
+	},
+
+
+
+"Instances": {
+		"_-----------------------------------------------------------_": "",
+		"Default":	{
+			"#All_Characters": {
+				"#All_Axes":	"default"
+			}
+		},
+		"Regular":	{
+			"#Uppercase": {
+				"_Scope": "include: A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, zero, one, two, three, four, five, six, seven, eight, nine, *.case",
+				"Weight":	"$Master.Regular+5"
+			},
+			"#All_Characters": {
+				"#All_Axes":	"$Master.Regular",
+				"Shadow": 		0.5,
+				"Shadow Angle": 30
+			}
+		},
+		"Bold":	{
+			"#Uppercase": {
+				"_Scope": "include: A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, zero, one, two, three, four, five, six, seven, eight, nine, *.case",
+				"Weight":	"$Master.Bold+10"
+			},
+			"#All_Characters": {
+				"#All_Axes":	"$Instances.Regular",
+				"Weight": 		"$Master.Bold"
+			}
+		}
+	},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		"_-----------------------------------------------------------_": "",
+
+		"_------- P r e v i o u s   S p e c - S k e t c h e s ---------_": "",
+
+		"_-----------------------------------------------------------_": "",
+
+		"_-----------------------------------------------------------_": "",
+
+		"_-----------------------------------------------------------_": "",
+
+		"_-----------------------------------------------------------_": "",
+
+
+
+
+	"Master Relations": {
+		"_-----------------------------------------------------------_": "",
+		"_Root_": {"Child":{},"Child":{},"Child":{"Grand Child":{}}},
+		"_-----------------------------------------------------------_": "",
+		"Regular": {
+			"Bold":{},
+			"Light":{},
+			"Shadow": {
+				"ShadowAngle": {}
+			}
+		},
+		"_-----------------------------------------------------------_": "",
+		"_description": "Describes the relation ship between all masters, simlar to a family tree. This allows more design flexibility as otherwise every master would neet to related directly to the root master. (Master names need to match exactly with the ones in Glyphs)"
+	},
+
+	"Master Value Scales": {
+		"_-----------------------------------------------------------_": "",
+		"_Master Name Value_": 		["_Parent_", "_Master Value_"],
+		"_-----------------------------------------------------------_": "",
+		"Regular":				[0,1],
+			"Light":			[85,20],
+			"Bold":				[85,160],
+			"Shadow":			[0,1],
+				"ShadowAngle":	[45,-45],
+		"_-----------------------------------------------------------_": "",
+		"_description": "Custom values for each Master and their parent. At this stage each master behaves like a uniqe axis, which creates a powerful flexible basis to create custom Sliders. (Master names need to match exactly with the ones in Glyphs)"
+	},
+
+	"Slider Setup": {
+		"_-----------------------------------------------------------_": "",
+		"_Slider Name_":	["min","max","tag(optional)", "master_sequence(opt.)", "parent(opt.)", "..."],
+		"_-----------------------------------------------------------_": "",
+		"Weight":			[1,220,"wght", ["Light", "Regular", "Bold"]],
+		"Shadow":			[0,1, "SHDW"],
+		"Shadow Angle":		[0,1, "SHDA", "default", "Shadow"]
+	},
+
+	"Slider-Master Mapping": {
+		"_-----------------------------------------------------------_": "",
+		"_Master Name_": 	"_Slider Name_ + simple math or full python functions (if needed)_",
+		"_-----------------------------------------------------------_": "",
+		"Light": 			"max($Slider.Weight, 85)",
+		"Bold": 			"min($Slider.Weight, 85)",
+
+		"Shadow": 			"$Slider.Shadow * map($Slider.Weight,20,220,0,1)",
+		"ShadowAngle": 		"$Slider.ShadowAngle * $Slider.Shadow"
+
+	},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"InstancesSetup": {
+
+"Variable Advanced": 		{
+			"#All_Chars": {
+				"#All_Sliders": "current_setting"
+				},
+
+			"Slider Setup" : "default",
+
+			"Calculations" : "default"
+			},
+
+		"Variable Basic": 		{
+			"#All_Chars": {
+				"#All_Sliders": "current_setting"
+				},
+
+			"Slider Setup" : {
+				"Shadow_Angle.visibility": false,
+				"_-----------------------------------------------------------_": "",
+				"_description_": "to overwrite the default master settings"
+			},
+
+			"Calculations" : "to overwrite the default master settings"
+			},
+},
+
+
+
+
+
+
+	"Master Value Scales": {
+		"_-----------------------------------------------------------_": "",
+		"Regular":	{
+			"value_parent":		0,
+			"value_master":		1,
+			"children":	{
+
+				"Light":	{
+					"value_parent":		85,
+					"value_master":		20
+				},
+				"Bold":	{
+					"value_parent":		85,
+					"value_master":		160
+				},
+				"Shadow":	{
+					"value_parent":		0,
+					"value_master":		1,
+					"children": {
+
+						"ShadowAngle":	{
+							"value_parent":		 45,
+							"value_master":		-45,
+							"parent":			"Shadow"
+						}
+					}
+				}
+			}
+		},
+		"_-----------------------------------------------------------_": "",
+		"_description": "Custom values for each Master and their parent. At this stage each master behaves like a uniqe axis, which creates a powerful flexible basis to create custom Sliders. (Master names need to match exactly with the ones in Glyphs)"
+	},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	"Slider Setup": {
+			"Weight":	{
+				"min": 				1,
+				"max":				220,
+				"tag":				"wght",
+				"master_sequence": 	["Light", "Regular", "Bold"],
+				"parent":			"none",
+				"extrapolation":	true,
+				"visibility_recom":	"basic/advanced/none/false",
+				"UI-type_recom":	"slider/button/..."
+			},
+			"Shadow": {
+				"min": 	0,
+				"max":	1,
+				"tag":	"SHDW"
+			},
+			"Shadow Angle": {
+				"min": 		-45,
+				"max":		 45,
+				"tag":		"SHDA",
+				"parent":	"Shadow"
+			}
+	},
+	"Slider Master Mapping": {
+			"Light": 				"max($Slider.Weight, 85)",
+			"Bold": 				"min($Slider.Weight, 85)",
+
+			"Shadow": 				"$Slider.Shadow * map($Slider.Weight,20,220,0,1)",
+			"ShadowAngle": 			"$Slider.ShadowAngle * $Slider.Shadow"
+
+	},
+
+
+
+
+	"Instances Setup": {
+		"VariableFont": {
+
+		"Master": {
+				"Light": 				"max($Slider.Weight, 85)",
+				"Bold": 				"min($Slider.Weight, 85)",
+
+				"Shadow": 				"$Slider.Shadow * map($Slider.Weight,20,220,0,1)",
+				"ShadowAngle": 			"$Slider.ShadowAngle",
+
+
+				"_Same Results, slightly different execution ":"",
+				"_-----------------------------------------------------------_": "",
+				"_Master Name_":		"max(_$Slider.Name_, _Max Value_",
+				"_-----------------------------------------------------------_": "",
+				"Light": 				"max($Slider.Weight, none)",
+				"Light": 				"max($Slider.Weight, 85)",
+				"Bold": 				"min($Slider.Weight, none)",
+				"Bold": 				"min($Slider.Weight, 85)",
+
+				"_-----------------------------------------------------------_": "",
+				"_Master Name_":		"between(_$Slider.Name_, _Min Value_, _Max Value_",
+				"_-----------------------------------------------------------_": "",
+				"Light": 				"between($Slider.Weight, 1, none)",
+				"Bold": 				"between($Slider.Weight, none, full)",
+
+				"Light": 				"between($Slider.Weight, 1, 85)",
+				"Bold": 				"between($Slider.Weight, 85, 160)",
+
+
+
+				"_-----------------------------------------------------------_": "",
+				"__no_influence": 		"none,parent,false,min,no,",
+				"__full_influence": 	"full,this,true,max,yes,",
+				"_-----------------------------------------------------------_": "",
+
+
+				"_Nope_ ":"",
+				"_-----------------------------------------------------------_": "",
+
+
+				"Light": 				"no_Extrapolation($Slider.Weight)",
+				"Bold": 				"no_Extrapolation($Slider.Weight)",
+
+				"Light": 				"$Slider.Weight > none ? none",
+				"Bold": 				"$Slider.Weight < none ? none",
+
+
+				"Light": 		{"$Slider.Weight": "1-85"},
+				"Bold": 		{"$Slider.Weight": "85-200"},
+
+				"Bold": 		"range($Slider.Weight, 85-200)",
+
+				"Bold": 		"(85-200) ? $Slider.Weight",
+				"Bold": 		"if(85-200): $Slider.Weight",
+
+
+				"$Slider.Weight" : 		["Light", "Regular", "Bold"]
+			}
+		}
+	},
+
+
+
+	"_Alternatives ... not as amazing ;)_": "",
+	"_--------------------------------_": "",
+
+
+		"Master Axes Groups": {
+		"_description": 	"Simple Math: With this setup we can group Master axes and limit their range (extrapolation) if there is another master. Here: 'Weight' sets Light-max = 85 & Bold-min = 85 / 'ShadowAxes' sets default fallback setup",
+
+		"Weight_Axis": 				["Light", "Regular", "Bold"],
+		"Shadow_Axis": 				["Regular", "Shadow"],
+			"ShadowAngle_Axis": 	["Regular", "ShadowAngle"],
+
+
+		"--------------------":"",
+		"_Example: Weight_Axis": 				["Light", "Regular", "Bold"],
+		"_becomes this:_":"",
+				"_-> Light": 			"max($Weight_Slider, full)",
+				"_-> Bold": 			"min($Weight_Slider, none)"
+
+	},
+
+
+	"Master Axes and Mapping": {
+		"_description": 	"With this setup we can group Master axes and limit their range (extrapolation) if there is another master. Here: 'Weight' sets Light-max = 85 & Bold-min = 85 / 'ShadowAxes' sets default fallback setup",
+		"_downside": "you cant do",
+		"_downside_Example": 				{"Bold":"20", "Regular":"85", "Light":"160"},
+		"_Master_Axis_Name_": "",
+		"Weight_Axis": 				{"Light":"20", "Regular":"85", "Bold":"160"},
+		"Shadow_Axis": 				{"Regular":"0", "Shadow":"1"},
+			"ShadowAngle_Axis": 	{"Shadow":"45", "ShadowAngle":"-45"},
+
+		"Weight_Axis": 				{"Light":"20", "_Parent":"85", "Bold":"160"},
+		"Shadow_Axis": 				{"_Parent":"0", "Shadow":"1"},
+			"ShadowAngle_Axis": 	{"_Parent":"45", "ShadowAngle":"-45"}
+	},
+
+
+
+
+
+
+	"Master_All_Descriptive": {
+		"Regular": {
+			"axes":		{
+				"Weight_Axis" :			85,
+				"Shadow_Axis" :			0,
+				"ShadowAngle_Axis":		45
+			}
+		},
+		"Bold": {
+			"axes": 		{
+				"Weight_Axis" :			160
+			},
+			"parent":	"Regular"
+		},
+		"Light": {
+			"axes": 		{
+				"Weight_Axis" :			20
+			},
+			"parent":	"Regular"
+		}
+
+	},
+
+	"Slider": {
+		"Weight_Slider":	{
+			"tag":	"wght",
+			"min": 	1,
+			"max":	220
+		},
+		"Shadow_Slider": {
+			"tag":	"SHDW",
+			"min": 	0,
+			"max":	1
+		},
+		"ShadowAngle_Slider": {
+			"tag":	"SHDA",
+			"min": 	-45,
+			"max":	45
+		}
+	},
+	"InstancesSetup": {
+		"VariableFont":	{
+			"Shadow": 		"$Shadow_Slider * map($Weight_Slider,20,220,0,1)",
+			"Light": 		"$Weight_Slider",
+			"Bold": 		"$Weight_Slider",
+			"ShadowAngle": 	"$ShadowAngle_Slider"
+		}
+	},
+
+
+
+	"InstancesSetup": {
+		"VariableFont":	{
+			"Slider": {
+				"[wght]Weight.Slider":			[[1, 220], "WeightAxes"],
+				"[SHDW]Shadow_Slider":			[0, 1],
+				"[SHDA]ShadowAngle_Slider":		[-45, 45]
+			},
+			"Master": {
+				"Shadow": 		"$Shadow_Slider * map($[wght]Weight.Slider,20,220,0,1)"
+			},
+			"Slider": {
+				"_Relations": "Weight_Slider,Shadow_Slider(Angle)",
+				"Weight_Slider":	{
+					"tag":	"wght",
+					"min": 	1,
+					"max":	220,
+					"axis": ["Light", "Regular", "Bold"]
+				},
+				"Shadow_Slider": {
+					"tag":	"SHDW",
+					"min": 	0,
+					"max":	1,
+					"axis": ["Regular", "Shadow"],
+					"math": "$Shadow / map($Weight_Slider,20,220,0,1)"
+				},
+				"ShadowAngle_Slider": {
+					"tag":	"SHDA",
+					"min": 	-45,
+					"max":	45
+				},
+				"[SHDW]Shadow_Slider":			[0, 1],
+				"[SHDA]ShadowAngle_Slider":		[-45, 45]
+			},
+			"Master Calculations": {
+				"Shadow": 		"$Shadow_Slider * map($Weight_Slider,20,220,0,1)",
+				"Light": 		"$Weight_Slider",
+				"Bold": 		"$Weight_Slider",
+				"ShadowAngle": 	"$ShadowAngleSlider"
+			},
+			"Calculation_Sequence": [
+				"Slider",
+				"Axes",
+				"Master Calculations / Instance Setup",
+				"Master Relations",
+				"Master Values"
+				]
+		}
+	}
+}
+
+

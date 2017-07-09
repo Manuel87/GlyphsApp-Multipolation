@@ -1,0 +1,299 @@
+{
+	"-Finding a suitable Slider/Axes Syntax, flexible and straightforward...":"",
+	"---------------------------------------------------":"",
+
+	"------ Shadow Axes Example for Rob ;) ---------------------":"",
+
+	"Master Relations": {
+		"Regular": {
+			"Bold":{},
+			"Light":{},
+			"Shadow": {
+				"ShadowAngle": {}
+			}
+		}
+	},
+	"Master Mapping": {
+		"Regular":				[0,1],
+			"Bold":				[85,160],
+			"Light":			[85,20],
+			"Shadow":			[0,1],
+				"ShadowAngle":	[45,-45]
+	},
+	"Axes": {
+		"WeightAxes": [["Light", "Regular", "Bold"]]
+	},
+
+	"InstancesSetup": {
+		"VariableFont":	{
+			"Slider": {
+				"[wght]Weight.slider":			[[1, 220], "WeightAxes"],
+				"[SHDW]Shadow.slider":			[0, 1],
+				"[SHDA]ShadowAngle.slider":		[-45, 45]
+			},
+			"Master": {
+				"Shadow": 		"$SliderShadow * map($[wght]Weight.slider,20,220,0,1)"
+			}
+		}
+	},
+
+	"---------------------------------------------------":"",
+
+	"Axes": {
+
+		"SliderShadow": [0, 1],
+
+
+		"Shadow": "SliderShadow * SliderWeight",
+
+		"SliderWeight": [[1, 220],["Light:1", "Regular:80", "Bold:160", "Black:220"]],
+
+		"SliderWeight": [[1, 220],["Light", "Regular", "Black"]],
+		"SliderWeightTest": [[1, 220],["Black", "Regular", "Light"]],
+		"SliderWeightBalance": [[0,1], ["SliderWeight", "SliderWeightTest"]],
+
+		"SliderWeight": [[1, 300],["Light", "Regular", "SemiboldInstance:120 = Black*0.5 + Light*0.5", "Black"]],
+
+
+		"SliderContrast": [[0, 1], "Contrast * SliderWeight"],
+		"SliderContrast": [[0, 1], "Contrast.map(0,1) * SliderWeight.map(0,1)"],
+
+		"SliderContrastMasterPlain": [[1, 300], "Light", "Contrast"]
+	},
+	"----- as in ROP ------------": "",
+	"Axes": {
+		"A_Size":			[6, 96],
+		"A_Weight":			[20, 160],
+		"A_Weight_Balance":	[0, 1],
+		"A_Width":			"Condensed"
+	},
+	"Logic": {
+		"Bold":			"limitMin( A_Weight, 85)",
+		"Light":		"limitMax( A_Weight, 85), 85",
+		"Inktraps":		"limitMax( A_Size, 12), 10",
+		"Condensed":	"A_Width"
+	},
+	"----- Alt 1 ------------": "",
+	"Master Relations": { "Regular": ["Bold", "Light", "Condensed"] },
+	"Master Mapping": {
+		"Regular":			[0,1],
+		"Bold":				[85,160],
+		"Light":			[85,20],
+		"Condensed":		[0,1]
+	},
+	"Axes": {
+		"A_Size":			[6, 96],
+		"A_Weight":			{"1-85": "Light", "86-200": "Bold"},
+		"A_Weight_Balance":	{"1-85": "Bold", "86-200": "Light"},
+		"Light": 			{"A_Weight": "1-85"},
+		"Bold": 			{"A_Weight": "86-200"},
+
+		"A_Weight_Balance":	[0, 1],
+		"A_Weight":		{ "range": [1,200], "20": "Light",
+										"85": "Regular",
+										"120": "BraceLayer",
+										"160": "Bold"},
+		"A_Weight":	 	{ "range": [1,200], "20": "Light",
+										"85": "Regular",
+										"120": "BraceLayer",
+										"160": ["Bold*A_Weight_Balance",
+												"Light*(1-A_Weight_Balance)"]},
+		"A_Weight":			{"1-85": {
+								"Light": "A_Weight_Balance",
+								"Bold":	"1-A_Weight_Balance"},
+							"86-200": {
+								"Bold": "A_Weight_Balance",
+								"Light":"1-A_Weight_Balance"}
+							},
+
+		"A_Weight":			[20, 160],
+
+		"A_Width":			"Condensed"
+	},
+
+
+	"----- Alt 2 -----------": "",
+	"Master Relations": { "Regular": ["Bold", "Light", "Condensed"] },
+	"Master Value Mapping": {
+		"Regular":			[0,1],
+		"Bold":				[85,160],
+		"Light":			[85,20],
+		"Condensed":		[0,1]
+	},
+	"Axes": {
+		"A_Weight":			[1, 200],
+		"A_Width":			[200,800]
+	},
+	"Master Axes Logic": {
+		"Light": 			{"1-85": "A_Weight" },
+		"Bold": 			{"86-200": "A_Weight"},
+		"Condensed":		"A_Width"
+	},
+
+	"Master Mapping": {
+		"Regular":			[0,1],
+		"Bold":				[85,160],
+		"Light":			[85,20]
+	},
+
+	"Axes Mapping": {
+		"A_Weight":			[1, 200],
+		"A_Weight_Balance":	[0, 1]
+	},
+	"Master Axes Logic": {
+		"Light": 			{	"1-85": "A_Weight*A_Weight_Balance",
+								"86-200": "A_Weight*(1-A_Weight_Balance)"  },
+		"Bold": 			{	"1-85": "A_Weight*(1-A_Weight_Balance)",
+								"86-200": "A_Weight*A_Weight_Balance"  }
+	},
+	"Master Axes Logic": {
+		"Light": 			{"1-85": "A_Weight" },
+		"Bold": 			{"86-200": "A_Weight"},
+		"Condensed":		"A_Width"
+	},
+
+
+	"Master Relations": { "Regular": ["Bold", "Light", "Condensed"] },
+
+	"Master Mapping": {
+		"Regular":				[0,1],
+			"Bold":				[85,160],
+			"Light":			[85,20],
+			"Condensed":		[0,1]
+	},
+	"Axes": {
+			"A_Weight":	 	{ "range": [1,200],
+			"20": "Light",
+			"85": "Regular",
+			"120": "BraceLayer",
+			"160": "Bold"
+			}
+	},
+	"Axes": {
+			"A_Weight_Bold":	 	{ "range": [1,200],
+			"20": "Bold",
+			"85": "Regular",
+			"120": "BraceLayer",
+			"160": "Bold"
+			},
+			"A_Weight_Light":	 	{ "range": [1,200],
+			"20": "Light",
+			"85": "Regular",
+			"120": "BraceLayer",
+			"160": "Light"
+			},
+			"A_Weight_Light":	 	{ "range": [0,100],
+			"0": {"A_Weight_Bold": ""},
+			"50": {"A_Weight_Bold": ""},
+			"100": "A_Weight_Light"
+			}
+	},
+
+
+	"MasterSetupMapping": {
+		"Regular":			[0,1, "All"],
+		"Light":			[[200, 54],[160,54],["Height","nWidth","Diacritics","MonoFaux","Mono", "Baselineshift", "Curvature", "CurvatureEqual"]],
+			"Height":			[1456, 1165],
+			"Diacritics":		[0, 100],
+			"Baselineshift":	[0, 100],
+			"Curvature":		[0, 100],
+			"MonoFaux":			[0, 100],
+			"Mono":				[0, 100],
+			"CurvatureEqual":	[0, 100],
+			"nWidth":			[782, 882],
+		"Bold":				[[200, 322],[160,260], ["Tight", "RoundCorners"]],
+			"RoundCorners":		[0, 100],
+			"Tight":			[100, 0],
+		"_info": {
+			"description": "MasterName, Map_0/[x_0, x_1], Map_1/[y_0, y_1], ['Child(s)'], Instance Math, Characters Changed [[180,150],[180,150]] Ascender 1536 Descender -416 Regular: stroke-values of original ttf supplied via googlefonts",
+			"default": 		[0,1]
+			}
+	},
+	"InstancesSetup": {
+		"Regular":	{
+			"#Uppercase": {
+				"_Scope": "include: A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, zero, one, two, three, four, five, six, seven, eight, nine",
+				"Height":	"1456"
+			},
+			"#Smallcaps": {
+				"_Scope": "include: A.smcp, B.smcp, C.smcp, D.smcp, E.smcp, F.smcp, G.smcp, H.smcp, I.smcp, J.smcp, K.smcp, L.smcp, M.smcp, N.smcp, O.smcp, P.smcp, Q.smcp, R.smcp, S.smcp, T.smcp, U.smcp, V.smcp, W.smcp, X.smcp, Y.smcp, Z.smcp, zero.smcp, one.smcp, two.smcp, three.smcp, four.smcp, five.smcp, six.smcp, seven.smcp, eight.smcp, nine.smcp",
+				"Height":	"1165"
+			},
+			"#Caps": {
+				"_Scope": "include: A.caps, B.caps, C.caps, D.caps, E.caps, F.caps, G.caps, H.caps, I.caps, J.caps, K.caps, L.caps, M.caps, N.caps, O.caps, P.caps, Q.caps, R.caps, S.caps, T.caps, U.caps, V.caps, W.caps, X.caps, Y.caps, Z.caps, zero.caps, one.caps, two.caps, three.caps, four.caps, five.caps, six.caps, seven.caps, eight.caps, nine.caps",
+				"Height":	"1400"
+			},
+
+			"#Ascender": {
+				"_Scope": "include: l, h, b, d, k, f, germandbls, t",
+				"Height":	"1536"
+			},
+			"#Descender": {
+				"_Scope": "include: p,q,g,y,j",
+				"Height":	"none+120"
+			},
+
+			"#All": {
+				"Regular":			"full",
+				"Light":			[185,152],
+				"Bold":				["none","none"],
+				"Height":			"none",
+				"nWidth":			"none",
+				"Diacritics":		"none",
+				"Baselineshift":	"none",
+				"RoundCorners":		"none",
+				"CurvatureEqual":	"none",
+				"Curvature":		"none",
+				"MonoFaux":			"none",
+				"Mono":				"none",
+				"Tight":			"none"
+
+			}
+		},
+		"_Bold":	{
+			"#All": {
+				"Regular":			"full",
+				"Light":			["none","none"],
+				"Bold":				["full","full"],
+				"Height":			"full",
+				"nWidth":			"none",
+				"Diacritics":		"none",
+				"Baselineshift":	"none",
+				"RoundCorners":		"none",
+				"CurvatureEqual":	"none",
+				"Curvature":		"none",
+				"MonoFaux":			"none",
+				"Mono":				"none",
+				"Tight":			"none"
+			}
+		},
+		"_Light":	{
+			"Regular":			"full",
+			"Light":			["full","full"],
+			"Bold":				["none","none"],
+			"Height":		"full",
+			"nWidth":		"none",
+				"Diacritics":		"none",
+				"Baselineshift":	"none",
+				"RoundCorners":		"none",
+				"CurvatureEqual":	"none",
+				"Curvature":		"none",
+				"MonoFaux":			"none",
+				"Mono":				"none",
+				"Tight":			"none"
+		},
+		"_info": {
+			"description": "Instance Values",
+			"default": 		{
+				"_Value":		"min",
+				"_ExtraSliders":	false,
+				"_Custom Parameters":	[],
+				"_isActive":		true,
+				"_CSSWeight":	400,
+				"_CSSnWidth":		5
+				}
+			}
+		}
+	}
+
+
