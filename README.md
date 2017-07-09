@@ -5,7 +5,7 @@ Extention for the Glyphs app. With this script you can handle complex interpolat
 https://github.com/Manuel87/RobotoFlex
 
 ### Install
-1. Move the “multipolation.min.py” to the script folder of Glyphs.
+1. Move the “multipolation.min.py” to the script folder of Glyphs. (Glyphs > Script > Open Scripts Folder)
 2. Now it is executable in Glyphs via: Script > Metapolation :)
 
 ### Features
