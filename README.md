@@ -28,5 +28,5 @@ https://github.com/Manuel87/RobotoFlex
 - Direct export as a variable  font (though the variable font spec has to catch up with features)
 
 ### Predecessor
-https://github.com/Manuel87/ExperimentalParametricTypeface
-https://github.com/Manuel87/TypeMultiverse (theory)
+- https://github.com/Manuel87/ExperimentalParametricTypeface
+- https://github.com/Manuel87/TypeMultiverse (theory)
