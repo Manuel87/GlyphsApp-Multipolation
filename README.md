@@ -29,3 +29,4 @@ https://github.com/Manuel87/RobotoFlex
 
 ### Predecessor
 https://github.com/Manuel87/ExperimentalParametricTypeface
+https://github.com/Manuel87/TypeMultiverse (theory)
