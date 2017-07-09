@@ -1,7 +1,7 @@
 # GlyphsMultipolation
 Extention for the Glyphs app. With this script you can handle complex interpolations and any amount of axes.
 
-### Showcase latest version: RobotoFlex v2
+### Demo: RobotoFlex
 https://github.com/Manuel87/RobotoFlex
 
 ### Install
